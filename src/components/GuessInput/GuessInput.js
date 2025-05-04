@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function GuessInput() {
+function GuessInput({ previousGuesses, setPreviousGuesses }) {
   const [guess, setGuess] = useState("");
 
   const handleChange = (e) => {
@@ -10,8 +10,11 @@ function GuessInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const key = crypto.randomUUID();
 
     console.log({ guess });
+    const NEXT_PREVIOUS_GUESSES = [...previousGuesses, { key, guess }];
+    setPreviousGuesses(NEXT_PREVIOUS_GUESSES);
     setGuess("");
   };
 

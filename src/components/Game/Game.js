@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import GuessInput from "../GuessInput";
+import PreviousGuesses from "../PreviousGuesses";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
@@ -11,7 +12,16 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <GuessInput />;
+  const [previousGuesses, setPreviousGuesses] = useState([]);
+  return (
+    <>
+      <PreviousGuesses previousGuesses={previousGuesses} />
+      <GuessInput
+        previousGuesses={previousGuesses}
+        setPreviousGuesses={setPreviousGuesses}
+      />
+    </>
+  );
 }
 
 export default Game;
