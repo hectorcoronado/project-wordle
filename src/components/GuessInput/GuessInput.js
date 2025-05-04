@@ -11,7 +11,7 @@ function GuessInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("** guess **", guess);
+    console.log({ guess });
     setGuess("");
   };
 
@@ -23,7 +23,10 @@ function GuessInput() {
         type="text"
         value={guess}
         onChange={(e) => handleChange(e)}
-        pattern="\w{5,5}"
+        minLength={5}
+        maxLength={5}
+        pattern="[a-zA-Z]{5}"
+        title="5 letter word" // hints the user if invalid input!
         required
       ></input>
     </form>
