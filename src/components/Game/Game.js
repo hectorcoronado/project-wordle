@@ -15,7 +15,7 @@ function Game() {
   const [previousGuesses, setPreviousGuesses] = useState([]);
   return (
     <>
-      <PreviousGuesses previousGuesses={previousGuesses} />
+      <PreviousGuesses answer={answer} previousGuesses={previousGuesses} />
       <GuessInput
         previousGuesses={previousGuesses}
         setPreviousGuesses={setPreviousGuesses}

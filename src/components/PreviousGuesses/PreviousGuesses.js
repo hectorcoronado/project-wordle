@@ -5,7 +5,7 @@ import Guess from "../Guess";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { range } from "../../utils";
 
-function PreviousGuesses({ previousGuesses }) {
+function PreviousGuesses({ answer, previousGuesses }) {
   let ALL_GUESSES;
 
   const EMPTY_SPANS = NUM_OF_GUESSES_ALLOWED - previousGuesses.length;
@@ -14,7 +14,7 @@ function PreviousGuesses({ previousGuesses }) {
     const { key, guess } = g;
     return (
       <p className="guess" key={key}>
-        <Guess previousGuess={guess} />
+        <Guess answer={answer} previousGuess={guess} />
       </p>
     );
   });

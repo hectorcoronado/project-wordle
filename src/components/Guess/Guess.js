@@ -1,16 +1,21 @@
 import React from "react";
 import { range } from "../../utils";
+import { checkGuess } from "../../game-helpers";
 
-function Guess({ previousGuess = "" }) {
+function Guess({ answer, previousGuess = "" }) {
   let spans;
 
   if (previousGuess) {
-    const splitGuess = previousGuess.split("");
-    spans = splitGuess.map((char, idx) => (
-      <span key={idx} className="cell">
-        {char}
-      </span>
-    ));
+    const checkedGuessResults = checkGuess(previousGuess, answer);
+    console.log("** checkedGuessResults **", checkedGuessResults);
+    spans = checkedGuessResults.map((result, idx) => {
+      const { letter, status } = result;
+      return (
+        <span key={idx} className={`cell ${status}`}>
+          {letter}
+        </span>
+      );
+    });
   } else {
     spans = range(5).map((_, idx) => <span key={idx} className="cell"></span>);
   }
