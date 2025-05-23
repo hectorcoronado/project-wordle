@@ -26,7 +26,7 @@ function PreviousGuesses({ answer, previousGuesses }) {
       </p>
     ));
 
-    ALL_GUESSES = [blanks, ...ALL_GUESSES];
+    ALL_GUESSES = [...ALL_GUESSES, blanks];
   }
 
   return <div className="guess-results">{ALL_GUESSES}</div>;
