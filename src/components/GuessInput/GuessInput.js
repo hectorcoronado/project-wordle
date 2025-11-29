@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-function GuessInput() {
+function GuessInput({ handlePreviousGuess }) {
   const [guess, setGuess] = useState("");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    console.log(guess);
+    // set previous guess so that user can see it above input
+    handlePreviousGuess(guess);
 
     setGuess("");
   };
