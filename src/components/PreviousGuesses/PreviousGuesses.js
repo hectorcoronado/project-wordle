@@ -1,7 +1,11 @@
+import Guess from "../Guess/Guess";
+
 function PreviousGuesses({previousGuesses}) {
-  return (<div className="guess-results">
-    {previousGuesses.map(guess => <p className="guess" key={guess}>{guess}</p>)}
-  </div>);
+  return (
+    <div className="guess-results">
+      <Guess previousGuesses={previousGuesses} />
+    </div>
+  );
 }
 
 export default PreviousGuesses;
