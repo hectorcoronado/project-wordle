@@ -1,9 +1,9 @@
 import Guess from "../Guess/Guess";
 
-function PreviousGuesses({previousGuesses}) {
+function PreviousGuesses({answer, previousGuesses}) {
   return (
     <div className="guess-results">
-      <Guess previousGuesses={previousGuesses} />
+      <Guess answer={answer} previousGuesses={previousGuesses} />
     </div>
   );
 }
