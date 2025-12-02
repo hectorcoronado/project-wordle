@@ -14,12 +14,13 @@ function Guess({ answer, previousGuesses }) {
 				// get guess for current index, or set to null if there isn't one
 				const guess = previousGuesses[idx] || null;
         // get status of each letter in the word (incorrect | correct | misplaced)
-        let guessStatus = guess ? checkGuess(guess, answer) : null;
+        const guessStatus = guess ? checkGuess(guess, answer) : null;
 
 				const cells = guess
 					? // if guess is not null, split guess into arr of letters & map over them to create spans
 					  guess.split('').map((letter, i) => {
               const statusClassName = guessStatus[i].status;
+              
               return(
                 <span className={`cell ${statusClassName}`} key={`${letter}-${i}`}>
                   {letter}
