@@ -9,20 +9,32 @@ import PreviousGuesses from "../PreviousGuesses/PreviousGuesses";
 import Banner from "../Banner/Banner";
 import KeyboardTracker from "../KeyboardTracker/KeyboardTracker";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-// console.info({ answer });
-
 function Game() {
+  const [answer, setAnswer] = useState(() => sample(WORDS));
   const [previousGuesses, setPreviousGuesses] = useState([]);
+  const [guess, setGuess] = useState("");
   const [allCharsStatus, setAllCharsStatus] = useState(ALL_CHARACTERS);
+
+  //   console.log("allCharsStatus:", allCharsStatus);
+
+  // To make debugging easier, we can uncomment this log to see the solution in the console.
+  // console.info({ answer });
 
   const handlePreviousGuess = (guess) =>
     setPreviousGuesses([...previousGuesses, guess]);
 
   const handleUpdateAllCharsStatus = (nextChars) =>
     setAllCharsStatus(nextChars);
+
+  const handleSetGuess = (nextGuess) => setGuess(nextGuess);
+
+  const handleResetGame = () => {
+    const newAnswer = sample(WORDS);
+    setAnswer(newAnswer);
+    setPreviousGuesses([]);
+    setGuess("");
+    setAllCharsStatus(ALL_CHARACTERS);
+  };
 
   const lastGuess = previousGuesses.length ? previousGuesses.at(-1) : null;
 
@@ -45,11 +57,14 @@ function Game() {
       />
       <GuessInput
         gameStatus={gameStatus}
+        guess={guess}
+        handleSetGuess={handleSetGuess}
         handlePreviousGuess={handlePreviousGuess}
       />
       <Banner
         answer={answer}
         gameStatus={gameStatus}
+        handleResetGame={handleResetGame}
         previousGuesses={previousGuesses}
       />
       <KeyboardTracker

@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-function GuessInput({ gameStatus, handlePreviousGuess }) {
-  const [guess, setGuess] = useState("");
+function GuessInput({
+  gameStatus,
+  guess,
+  handleSetGuess,
+  handlePreviousGuess,
+}) {
   const isDisabledInput = !!gameStatus;
 
   const handleOnSubmit = (e) => {
@@ -10,7 +14,7 @@ function GuessInput({ gameStatus, handlePreviousGuess }) {
     // set previous guess so that user can see it above input
     handlePreviousGuess(guess);
 
-    setGuess("");
+    handleSetGuess("");
   };
 
   const handleOnChange = (e) => {
@@ -18,7 +22,7 @@ function GuessInput({ gameStatus, handlePreviousGuess }) {
 
     const nextGuess = e.target.value.toUpperCase();
 
-    setGuess(nextGuess);
+    handleSetGuess(nextGuess);
   };
 
   return (
