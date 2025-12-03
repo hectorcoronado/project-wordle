@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ALL_CHARACTERS } from "../../constants";
 import { checkGuess } from "../../game-helpers";
 
-function KeyboardTracker({ answer, previousGuesses }) {
-  const [allCharsStatus, setAllCharsStatus] = useState(ALL_CHARACTERS);
+function KeyboardTracker({
+  allCharsStatus,
+  answer,
+  handleUpdateAllCharsStatus,
+  previousGuesses,
+}) {
   const { topRow, midRow, bottomRow } = allCharsStatus;
 
   useEffect(() => {
@@ -14,7 +17,6 @@ function KeyboardTracker({ answer, previousGuesses }) {
     const checkedGuess = checkGuess(lastGuess, answer);
 
     let nextCharsObject = { ...allCharsStatus };
-    console.log("nextCharsObject:", nextCharsObject);
 
     // start by looking through each row in nextCharsObject (i.e. "topRow" for letters QWERTY to P)
     for (const row in nextCharsObject) {
@@ -34,7 +36,7 @@ function KeyboardTracker({ answer, previousGuesses }) {
       }
     }
 
-    setAllCharsStatus(nextCharsObject);
+    handleUpdateAllCharsStatus(nextCharsObject);
   }, [previousGuesses]);
 
   return (

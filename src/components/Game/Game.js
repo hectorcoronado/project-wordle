@@ -2,6 +2,7 @@ import { useState } from "react";
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { ALL_CHARACTERS } from "../../constants";
 
 import GuessInput from "../GuessInput/GuessInput";
 import PreviousGuesses from "../PreviousGuesses/PreviousGuesses";
@@ -15,9 +16,13 @@ const answer = sample(WORDS);
 
 function Game() {
   const [previousGuesses, setPreviousGuesses] = useState([]);
+  const [allCharsStatus, setAllCharsStatus] = useState(ALL_CHARACTERS);
 
   const handlePreviousGuess = (guess) =>
     setPreviousGuesses([...previousGuesses, guess]);
+
+  const handleUpdateAllCharsStatus = (nextChars) =>
+    setAllCharsStatus(nextChars);
 
   const lastGuess = previousGuesses.length ? previousGuesses.at(-1) : null;
 
@@ -47,7 +52,12 @@ function Game() {
         gameStatus={gameStatus}
         previousGuesses={previousGuesses}
       />
-      <KeyboardTracker answer={answer} previousGuesses={previousGuesses} />
+      <KeyboardTracker
+        allCharsStatus={allCharsStatus}
+        answer={answer}
+        handleUpdateAllCharsStatus={handleUpdateAllCharsStatus}
+        previousGuesses={previousGuesses}
+      />
     </>
   );
 }
