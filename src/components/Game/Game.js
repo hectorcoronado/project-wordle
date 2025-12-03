@@ -6,6 +6,7 @@ import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GuessInput from '../GuessInput/GuessInput';
 import PreviousGuesses from '../PreviousGuesses/PreviousGuesses';
 import Banner from '../Banner/Banner';
+import KeyboardTracker from '../KeyboardTracker/KeyboardTracker';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -46,6 +47,10 @@ function Game() {
 				gameStatus={gameStatus}
 				previousGuesses={previousGuesses}
 			/>
+      <KeyboardTracker
+        answer={answer}
+        previousGuesses={previousGuesses}
+      />
 		</>
 	);
 }

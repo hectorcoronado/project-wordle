@@ -230,3 +230,57 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.keyboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 100%;
+}
+
+.key {
+  background-color: lightgray;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  margin: 3px;
+  padding: 6px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.key {
+  &.incorrect,
+  &.misplaced,
+  &.correct {
+    color: white;
+  }
+}
+
+.incorrect {
+  background-color: var(--color-gray-300);
+}
+
+.misplaced {
+  background-color: var(--color-warning);
+}
+
+.correct {
+  background-color: var(--color-success);
+}
+
+.keyboard-legend {
+  & p {
+    text-align: center;
+  }
+
+  margin-top: 10px;
+}
