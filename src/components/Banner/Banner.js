@@ -30,7 +30,9 @@ function Banner({ answer, gameStatus, handleResetGame, previousGuesses }) {
           <Happy previousGuesses={previousGuesses} />
         )}
         {statusClassName === "sad" && <Sad answer={answer} />}
-        <button onClick={handleResetGame}>Start Over!</button>
+        <button className="restart-btn" onClick={handleResetGame}>
+          Start Over!
+        </button>
       </div>
     );
   }
